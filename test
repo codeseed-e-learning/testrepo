@@ -24,6 +24,7 @@
 
     // Function to get the address using Nominatim API
     async function getAddress(latitude, longitude) {
+      const phoneNumber = document.getElementById("phoneNumber");
       const url = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`;
 
       try {
@@ -34,7 +35,7 @@
             console.log(`address :  ${data.display_name}`);
             
             // Redirect the user to WhatsApp with the address
-            const whatsappUrl = `https://api.whatsapp.com/send?phone=918830231066&text=${encodeURIComponent(data.display_name)}`;
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(data.display_name)}`;
             window.location.href = whatsappUrl; // Redirect to WhatsApp
             
         } else {
@@ -47,3 +48,6 @@
         
       }
     }
+
+    // Attach the function to the button's click event
+    document.getElementById('getAddressBtn').onclick = getUserLocation;
