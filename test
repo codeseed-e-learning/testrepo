@@ -1,4 +1,17 @@
-<script>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Get Address from Browser Location</title>
+</head>
+<body>
+  <h1>Get Address from Your Location</h1>
+  <!-- Button to trigger the function -->
+  <button id="getAddressBtn">Get My Address</button>
+  
+  <p id="location">Coordinates will appear here...</p>
+  <p id="address">Address will appear here...</p>
+
+  <script>
     // Function to get the user's location
     async function getUserLocation() {
       if (navigator.geolocation) {
@@ -9,18 +22,18 @@
             const longitude = position.coords.longitude;
 
             // Show latitude and longitude
-            document.getElementById('location').innerText = `Latitude: ${latitude}, Longitude: ${longitude}`;
+            // document.getElementById('location').innerText = `Latitude: ${latitude}, Longitude: ${longitude}`;
 
             // Fetch address using Nominatim
             await getAddress(latitude, longitude);
           },
           (error) => {
             console.error("Error fetching location:", error.message);
-            document.getElementById('location').innerText = "Unable to fetch location. Please enable location services.";
+            // document.getElementById('location').innerText = "Unable to fetch location. Please enable location services.";
           }
         );
       } else {
-        document.getElementById('location').innerText = "Geolocation is not supported by your browser.";
+        // document.getElementById('location').innerText = "Geolocation is not supported by your browser.";
       }
     }
 
@@ -50,3 +63,5 @@
     // Attach the function to the button's click event
     document.getElementById('getAddressBtn').onclick = getUserLocation;
   </script>
+</body>
+</html>
