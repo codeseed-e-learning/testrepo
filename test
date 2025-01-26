@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Get Address from Browser Location</title>
-</head>
-<body>
-  <h1>Get Address from Your Location</h1>
-  <!-- Button to trigger the function -->
-  <button id="getAddressBtn">Get My Address</button>
-  
-  <p id="location">Coordinates will appear here...</p>
-  <p id="address">Address will appear here...</p>
-
-  <script>
-    // Function to get the user's location
-    async function getUserLocation() {
+ async function getUserLocation() {
       if (navigator.geolocation) {
         // Get current position
         navigator.geolocation.getCurrentPosition(
@@ -48,20 +33,17 @@
         if (data && data.display_name) {
             console.log(`address :  ${data.display_name}`);
             
-          logAddress:;
+            // Redirect the user to WhatsApp with the address
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=918830231066&text=${encodeURIComponent(data.display_name)}`;
+            window.location.href = whatsappUrl; // Redirect to WhatsApp
+            
         } else {
             console.log(`No address found for these coordinates.`);
             
           
         }
       } catch (error) {
-        console.error("Error fetching address:", error);
+        // console.error("Error fetching address:", error);
         
       }
     }
-
-    // Attach the function to the button's click event
-    document.getElementById('getAddressBtn').onclick = getUserLocation;
-  </script>
-</body>
-</html>
